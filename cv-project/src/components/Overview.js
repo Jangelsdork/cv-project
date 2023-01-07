@@ -6,7 +6,7 @@ const Overview = (props) => {
     return (
         <div>
             {cvInputs.map((inputData) => {
-                return <div key={inputData.id}>{inputData.inputValue}</div>
+                return <div id={inputData.id} key={inputData.id}>{inputData.inputValue}</div>
             })}
         </div>
     )

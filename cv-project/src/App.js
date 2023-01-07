@@ -8,6 +8,9 @@ class App extends Component {
     <div>
       <FormItem inputType="First Name:" />
       <FormItem inputType="Last Name:" />
+      <FormItem inputType="Phone Number:" />
+      <FormItem inputType="City:" />
+      <FormItem inputType="Profession:" />
       </div>
     )
   }
@@ -20,13 +23,14 @@ class FormItem extends Component {
     this.state = {
       inputData: {
         inputValue: '',
-        id: uniqid()
+        id: uniqid(),
       },
       cvInputs: [],
-      
+      buttonValue: 'Add'
     }
     // this.handleChange = this.handleChange.bind(this)
     // this.onSubmitData = this.onSubmitData.bind(this)
+    // this.buttonValue = this.buttonValue.bind(this)
   }
 
   handleChange = (e) => {
@@ -44,26 +48,29 @@ class FormItem extends Component {
       cvInputs: this.state.cvInputs.concat(this.state.inputData),
       inputData: {
         inputValue: '',
-        id: uniqid()
-      }
+        id: uniqid(),
+      },
+      buttonValue: 'Delete'
+
     })
+    console.log(this.state.inputData.buttonValue)
 
   }
 
   render() {
-    const { inputData, cvInputs } = this.state;
+    const { inputData, cvInputs, buttonValue } = this.state;
 
     return (
       <div>
         <form onSubmit={this.onSubmitData}>
-          <label htmlFor="valueInput">{this.props.inputType}</label> {/*how can I return a new label for each item? E.g name, dob, etc*/}
+          <label htmlFor="valueInput">{this.props.inputType}</label>
           <input 
             onChange={this.handleChange}
             value={inputData.inputValue}
             type="text" 
             id="valueInput"
           />
-          <button type="submit">Add</button>
+          <button type="submit">{buttonValue}</button>
         </form>
         <Overview cvInputs={cvInputs} />
       </div>
