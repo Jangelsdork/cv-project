@@ -42,8 +42,10 @@ class FormItem extends Component {
     });
   };
 
+  // function that adds the input data into the array "cvInputs", then changes button value to "delete" if initial state is add 
   onSubmitData = (e) => {
     e.preventDefault();
+    if(this.state.buttonValue === 'Add' && this.state.cvInputs.length === 0){
     this.setState({
       cvInputs: this.state.cvInputs.concat(this.state.inputData),
       inputData: {
@@ -51,14 +53,28 @@ class FormItem extends Component {
         id: uniqid(),
       },
       buttonValue: 'Delete'
-
+    
     })
-    console.log(this.state.inputData.buttonValue)
+  }
+
+    else if(this.state.buttonValue === 'Delete') {
+      this.setState({
+        cvInputs: [],
+        inputData: {
+          inputValue: '',
+          id: uniqid(),
+        },
+        buttonValue: 'Add'
+      })
+     console.log(this.cvInputs)
+    }
 
   }
 
   render() {
     const { inputData, cvInputs, buttonValue } = this.state;
+    // console.log('render', this.props, this.state);
+    console.log(cvInputs)
 
     return (
       <div>
