@@ -2,11 +2,11 @@ import React from "react";
 
 const Overview = (props) => {
     const { cvInputs } = props; 
-
+/*to do: edit id to input type*/
     return (
-        <div>
+        <div className="output">
             {cvInputs.map((inputData) => {
-                return <div id={inputData.id} key={inputData.id}>{inputData.inputValue}</div>
+                return <div id={inputData.id} key={inputData.id}>{inputData.inputValue}</div> 
             })}
         </div>
     )
